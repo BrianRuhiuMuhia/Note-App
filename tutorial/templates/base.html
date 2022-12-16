@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}{%endblock%}</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+<body>
+    <nav class="nav-bar">
+    <div class="container d-flex">
+        <div class="nav-items">
+            <span class="logo">Logo</span>
+            <button class="btn toggle"></button>
+        </div>
+    <div class="nav">
+        <div class="nav-links">
+             <a class="link" href="/login">LogIn</a>
+             <a class="link" href="/register">Register</a>
+             <a class="link" href="/logout">LogOut</a>
+             <a class="link" href="/">Home</a>
+        </div>
+    </div>
+    </div>
+    </nav>
+    {%with messg = get_flashed_messages(with_categories=true)%}
+    {%if messg%}
+    {%for category,message in messg%}
+    {%if category == "error"%}
+    <div class="message error">{{message}} <button class="close-btn"></button></div>
+    {%endif%}
+    {%if category == "success"%}
+    <div class="message success">{{message}}<button class="close-btn"></button></div>
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+        <div class="container">
+            {%block content%}{%endblock%}
+        </div>
+    </body>
+     <script src="{{url_for('static',filename='script.js')}}"></script>
+</body>
+</html>
