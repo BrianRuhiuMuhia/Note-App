@@ -1,7 +1,7 @@
 from flask import Blueprint,render_template,request,flash,redirect,url_for
 from . import db
+from flask_login import login_user,logout_user,current_user,login_required
 from .models import User
-from flask_login import login_user,logout_user,login_required,current_user
 auth=Blueprint("auth",__name__)
 @auth.route("login",methods=['GET','POST'])
 def login():
@@ -11,14 +11,14 @@ def login():
         user=User.query.filter_by(email=email).first()
         if user:
             if password == user.password:
-                login_user(user,remember=True)
                 flash("Logged in Successfully",category="success")
-                return redirect(url_for("views.home_page "))
+                login_user(user,remember=True)
+                return redirect(url_for("views.home_page"))
             else:
                 flash("Incorrect password try again",category="error")
         else:
             flash("Email does not exist",category="error")
-    return render_template("login.html")
+    return render_template("login.html",user=current_user)
 @auth.route("register",methods=['GET','POST'])
 def register():
     if request.method == 'POST':
@@ -45,11 +45,12 @@ def register():
               new_user=User(fName=fName,lName=lName,email=email,password=password)
               db.session.add(new_user)
               db.session.commit()
-              login_user(new_user,remember=True)
               flash("Account Created",category="success")
+              login_user(new_user,remember=True)
               return redirect(url_for("views.home_page"))
-    return render_template("register.html")
+    return render_template("register.html",user=current_user)
 @auth.route("logout")
+@login_required
 def logout():
     logout_user()
-    return redirect(url_for("views.home_page"))
+    return redirect(url_for("auth.login"))

@@ -15,10 +15,13 @@
         </div>
     <div class="nav">
         <div class="nav-links">
+            {%if user.is_authenticated%}
+            <a class="link" href="/">Home</a>
+            <a class="link" href="/logout">LogOut</a>
+            {%else%}
              <a class="link" href="/login">LogIn</a>
              <a class="link" href="/register">Register</a>
-             <a class="link" href="/logout">LogOut</a>
-             <a class="link" href="/">Home</a>
+             {%endif%}
         </div>
     </div>
     </div>

@@ -1,9 +1,15 @@
 {%extends "base.html"%}
 {%block title%}Home{%endblock%}
 {%block content%}
-{%if boolean == True%}
-<h1>{{name}}</h1>
-{%else%}
-<h1>NoName</h1>
-{%endif%}
+<div class="container">
+    <form class="notes" method="POST">
+        <textarea class="text-area" name="text-area"></textarea>
+        <div>
+            <button type="submit" class="form-btn">Add Note</button>
+        </div>
+    </form>
+    {%for text in user.note%}
+    <div class="note">{{text.text}}<a href="/delete{{text.id}}" class="delete form-btn">Delete</a></div>
+    {%endfor%}
+</div>
 {%endblock%}

@@ -63,7 +63,7 @@ color:white;
 .form-btn:hover{
     transform:scale(1.02)
 }
-form{
+.form{
     width:400px;
     display:flex;
     flex-direction: column;
@@ -76,10 +76,10 @@ form{
     gap:0.5em;
     border:solid 2px grey;
 }
-label{
+.form label{
     font-size: 1em;
 }
-form input{
+.form input{
 height: 30px;
 }
 a:hover{
@@ -155,15 +155,43 @@ background-color: rgba(0, 255, 0, 0.404);
     .link{
         color:white;
     }
-    form{
+    .form{
         padding:0.2em 1em;
         width:50%;
         margin-top: 2em;
     }
-    form input{
+    .form input{
         height: 30px;
         }
     .message{
         padding-block:0.2em;
     }
+}
+.notes{
+    margin-block:1em;
+    display:flex;
+    flex-direction: column;
+    margin-inline:auto;
+    align-items: center;
+    gap:1em;
+}
+.notes textarea{
+    width:600px;
+    height:400px;
+}
+.container{
+width:98vw;
+max-width:1000px;
+}
+.delete{
+    color:black;
+    text-align: center;
+    padding:0.5em;
+    background-color: aqua;
+}
+.note{
+    padding:1em;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
 }
